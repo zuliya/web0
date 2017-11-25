@@ -1,0 +1,40 @@
+Backend
+NodeJS Server accessing
+Gonna send data
+
+Front end gonna request from server
+Server will request to API
+Server is middle man btw API n user
+
+
+Use javascript + mysl ( GOOGLE)
+
+
+Start creating incredibly simple server  ( app.get (“/“ search)  test localhost:8090/
+test them in the browser
+
+2.  Make a Basic Front end (bootstrap ) Strat up with the text box and a button
+Have the form and get it submitting to a server
+
+That is with some JQuery front end ./ user interaction
+JQuery talk to nodes so nodeJs could give some dummy data
+(server return the same thing every time )
+
+( have my form submitting to the server)
+
+
+3. Set up the database / or add more routes (get events ) to
+for each route either get  (read data) or post (putting things you got from these to the database)
+(get ) NodeJs routes
+route is anything that comes after your domain name
+( post venues / get venues)
+Express is the node module that allows you to nicely create a server
+
+nom ( initialise a package.json) which modules
+install express in the local
+
+folder to be in
+npm init
+nom install express —save(put it in package ..
+
+4.

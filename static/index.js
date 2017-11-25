@@ -1,6 +1,5 @@
 console.log("Loaded")
 
-
 //TODO ask steven about cookies
 
 // do not try and access part of the document untill it has completed loading
@@ -22,6 +21,17 @@ $(document).ready(function() {
           //put in the end of body
           //.empty and then add "
           $("body").append(header);
+
+
+  $("btnSearchVenues").click(function(venue){
+    console.log("Button clicked");
+    $.getJSON("venues",function(data){
+      console.log(data);
+      var test = data.test;
+      var header = $("<h2>").text(test);
+      $("body").append(header);
+    }
+  }
 
           //Crazy Mike TODO understand
           // object has an array of tokens
