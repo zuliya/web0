@@ -74,15 +74,28 @@ app.post("/venues/add", function(req, resp) {
 app.get("/events/get/:event_id", function (req,resp){
   const id = req.params.event_id;
   dbConnection.query('SELECT * FROM event where event_id = ?', id, function(err, res, fields) {
-    if(err) throw err;
-    resp.json(res);
+    if(err) throw err
+    const event = res[0]
+    if (!event) {
+      resp.send("Error: no such event")
+      return
+    }
+    resp.json(event);
   })
 });
 
 
-app.post("/events", function(req, resp) {
-    var venueTown = req.body.venueTown;
-    var varN = req.body.venueName;
+app.post("/events/add", function(req, resp) {
+  const { event_id, title, venue_id, date, url, blurb } = req.body
+  const params = { event_id, title, venue_id, date, url, blurb }
+  dbConnection.query('INSERT INTO event SET ?', params, function(err, res) {
+    if (err) {
+      resp.send(err)
+      return
+    }
+    resp.send(params)
+  })
+
 });
 
 
