@@ -3,7 +3,7 @@ var router = express.Router()
 var dbConnection = require('../helpers/dbConnection')
 
 // Get all venues
-router.get("/venues", function(req, resp) {
+router.get("/", function(req, resp) {
   // application/json all response have JSON have to send JSON
       resp.setHeader("content-type", "application/json");
   // pass the query to an established connection
@@ -22,12 +22,15 @@ router.get("/venues", function(req, resp) {
   })
 })
 
-router.post("/venues/add", function(req, resp) {
+router.post("/add", function(req, resp) {
   const { name, postcode, town, url, icon } = req.body
-  const params = { name, postcode, town, url, icon }
+  const params = {name, postcode, town, url, icon }
+
   dbConnection.query('INSERT INTO venue SET ?', params, function(err, res) {
+    console.log(params)
     if (err) {
       resp.send(err)
+      console.log(params)
       return
     }
     resp.send(params)
