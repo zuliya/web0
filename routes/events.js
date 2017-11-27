@@ -2,7 +2,7 @@ var express = require("express")
 var router = express.Router()
 var dbConnection = require('../helpers/dbConnection')
 
-router.get('/search', (req, resp) => {
+router.get('/search', function(req, resp){
   const {search, date} = req.query
   let query = 'SELECT * FROM event where'
   if (search) query += `title LIKE '%${search}%'`
@@ -17,7 +17,7 @@ router.get('/search', (req, resp) => {
   })
 })
 
-router.get('/get/:event_id', (req, resp) => {
+router.get('/get/:event_id', function(req, resp){
   const id = req.params.event_id;
   dbConnection.query('SELECT * FROM event where event_id = ?', id, function(err, res, fields) {
     if(err) throw err
@@ -30,7 +30,7 @@ router.get('/get/:event_id', (req, resp) => {
   })
 })
 
-router.post('/events/add', (req, resp) => {
+router.post('/events/add', function(req, resp){
   const { event_id, title, venue_id, date, url, blurb } = req.body
   const params = { event_id, title, venue_id, date, url, blurb }
   dbConnection.query('INSERT INTO event SET ?', params, function(err, res) {
