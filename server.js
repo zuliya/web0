@@ -14,7 +14,7 @@ app.use(bodyParser.json()); // to support JSON-encoded bodies
 //url getrequest in the urlencoded
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
-}));
+})); 
 
 
 app.use('/events', events)
