@@ -4,9 +4,9 @@ var dbConnection = require('../helpers/dbConnection')
 
 
 
-router.post('/login', login)
+router.post('/log', login)
+
 function login(req, resp) {
-  app.use(checkToken);
   console.log("Got here")
   const { username, password } = req.body
   dbConnection.query(`SELECT * FROM user WHERE username LIKE '${username}' and password LIKE '${password}'`, function(err, res) {
@@ -25,24 +25,5 @@ function login(req, resp) {
   })
 }
 
-function checkToken(req, resp, next) {
-  // if just need to find event no need to be admin
-  if (req.method === 'GET') {
-    next()
-    return
-  }
-  // TODO add later auth_token === 'concertina' && req.connection.remoteAddress.startsWith('129.234.')
-  const { auth_token } = req.body
-  if (auth_token === 'concertina' ) {
-    next()
-    return
-  }
-  resp.send('Not authenticated!')
-
-  if (!auth_token){
-  resp.send('Not authenticated!')
-  }
-
-}
 
 module.exports = router

@@ -30,7 +30,7 @@ router.get('/get/:event_id', function(req, resp){
   })
 })
 
-router.post('/events/add', function(req, resp){
+router.post('/add', function(req, resp){
   const { event_id, title, venue_id, date, url, blurb } = req.body
   const params = { event_id, title, venue_id, date, url, blurb }
   dbConnection.query('INSERT INTO event SET ?', params, function(err, res) {
