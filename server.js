@@ -1,5 +1,6 @@
 // set up express for routing
 var express = require("express");
+var moment = require('moment')
 var app = express();
 var events = require('./routes/events')
 var venues = require('./routes/venues')
@@ -28,18 +29,32 @@ function checkToken(req, resp, next) {
     next()
     return
   }
+
   // TODO add later auth_token === 'concertina' && req.connection.remoteAddress.startsWith('129.234.')
   const { auth_token } = req.body
   if (auth_token === 'concertina' ) {
     next()
     return
   }
-  resp.send('Not authenticated!')
 
-  if (!auth_token){
-  resp.send('Not authenticated!')
+  if (auth_token) {
+    dbConnection.query(`SELECT * FROM user WHERE token = '${auth_token}'`, function(err, result) {
+      if (err) {
+        resp.send(error)
+        return
+      }
+      const user = result[0]
+      console.log(result[0]);
+      if(!user){
+          resp.send('Not authenticated!')
+          return
+      }
+      next()
+      return
+    })
+  } else {
+    resp.send('Not authenticated!')  
   }
-
 }
 
 
