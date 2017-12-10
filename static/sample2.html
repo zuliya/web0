@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <!-- Import jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Import clientside custom javascript -->
+        <script src="index.js" type="text/javascript"></script>
+    </head>
+    <body>
+
+        <button type="button" id="btnSearchEvents">Click me Events</button>
+        <!-- run the js of search-->
+
+        <button type="button" id="btnSearchVenues" onclick="searchVenues()">Click me Venues</button>
+
+        <!-- this method will reload the pade
+        using name in the inputs but using the custom handler with jquery to handle the event-->
+                <form action="/action_page.php">
+                    First name:<br>
+                    <input type="text" name="firstname" value="Mickey">
+                    <br> Last name:<br>
+                    <input type="text" name="lastname" value="Mouse">
+                    <br><br>
+                    <input type="submit" value="Submit">
+                </form>
+
+    </body>
+</html>
