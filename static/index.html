@@ -1,129 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-
+<head>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>Bootstrap Theme Simply Me</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <title>Event Page - Start EVENT PAGE</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+<body>
 
-    <!-- Custom styles for this template -->
-    <link href="css/grayscale.min.css" rel="stylesheet">
-
-  </head>
-
-  <body id="page-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Introductory Event Page</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">User</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Admin</a>
-            </li>
-          </ul>
+<!-- Navbar -->
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">NSHF76</a>
         </div>
-      </div>
-    </nav>
 
-    <!-- Intro Header -->
-    <header class="masthead">
-      <div class="intro-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h1 class="brand-heading">EVENT PAGE</h1>
-              <p class="intro-text">Here you will be able to search for events by dates and venues.
-                <br>Second year project, set by Steven Bradley</p>
-                <br>Scrowl down to start </p>
-              <a href="#about" class="btn btn-circle js-scroll-trigger">
-                <i class="fa fa-angle-double-down animated"></i>
-              </a>
-            </div>
-          </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">User</a></li>
+                <!--<li><a href="#">Search by Date</a></li>-->
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+
+            </ul>
         </div>
-      </div>
-    </header>
 
-    <!-- User Section -->
-    <section id="about" class="content-section text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <h2>Search for an event </h2>
+    </div>
+</nav>
 
-            <form action="/action_page.php">
-                Event Date:<br>
-                <input type="text" date="Input Date" value="Year, Month, Date">
-                <input type="submit" value="Submit">
-                <br>
-            </form>
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+    <h1 class="margin">Events 2017 - 2018 </h1>
+    <h2>Assignment set by Steven Bradley</h2>
+    <img src="images/bg1.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+</div>
 
-            <form action="/action_page.php">
-                Event Venue:<br>
-                <input type="text" venue="Input Venue" value="Venue ID">
-                <input type="submit" value="Submit">
-                <br>
-            </form>
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center">
 
+    <h3 class="margin">Search for an Event?</h3>
+    <p>
 
+    <form action="/action_page.php">
+        <div class="form-group">
+            <label for="email">Name</label>
+            <input type="email" class="form-control" id="email">
         </div>
-      </div>
-    </section>
 
-    <!-- Admin Section -->
-    <section id="download" class="download-section content-section text-center">
-      <div class="container">
-        <div class="col-lg-8 mx-auto">
+        <button type="submit" class="btn btn-default glyphicon glyphicon-search "> Search </button>
 
-          <h2>Administrator Login</h2>
-          <p>You will be able to list and add venues & add events to a selected venue</p>
-          <a href="GREEN BUTTON" class="btn btn-default">Login</a>
+        <div class="form-group">
+            <label for="pwd">Date</label>
+            <input type="password" class="form-control" id="pwd">
         </div>
-      </div>
-    </section>
+
+        <button type="submit" class="btn btn-default glyphicon glyphicon-search "> Search </button>
+    </form>
+    </p>
 
 
-    <!-- Footer -->
-    <footer>
-      <div class="container text-center">
-        <p>Copyright &copy; Zulia Shavaeva 2017</p>
-      </div>
-    </footer>
+</div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-3 text-center">
+    <h3 class="margin"> Some Events to be shown </h3><br>
+    <div class="row">
+        <div class="col-sm-4">
+            <p> Event 1 </p>
+            <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+        </div>
+        <div class="col-sm-4">
+            <p> Event 2 </p>
+            <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+        </div>
+        <div class="col-sm-4">
+            <p> Event 3 </p>
+            <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+        </div>
+    </div>
+</div>
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+    <p> Made by Zulia</p>
+</footer>
 
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/grayscale.min.js"></script>
-
-  </body>
-
+</body>
 </html>

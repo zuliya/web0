@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Events 2017/2018</title>
+</head>
+
+<body>
+<ul id="main-menu">
+
+    <li class="mobile menu-control" onClick="toggleMenu()">
+        <svg width="16" height="10">
+            <polygon fill="white" points="0,0 16,0 8,10"/>
+        </svg>
+    </li>
+    <li class="menu-item"><a href="#about">USER</a></li>
+    <li class="menu-item"><a href="#faq">Some event </a></li>
+</ul>
+<header id="main-header">
+    <div class="header-content-wrapper">
+
+
+        <span class="header-info">
+            <div class="container-fluid">
+                <h2>Events 2017 - 2018</h2>
+                 <br>
+                <h4>Assignment set by Steven Bradley</h4>
+            </div>
+        </span>
+
+    </div>
+</header>
+
+
+
+<section id="about">
+
+    <div class="container-fluid">
+        <h2>Search for an event</h2>
+    </div>
+
+</section>
+
+
+
+
+
+<section id="dataset">
+    <div class="content">
+        <h2>The hackathon will be hosted here </h2>
+
+    </div></section>
+<div class="overlay" onClick="style.pointerEvents='none'"></div>
+
+
+</section>
+
+
+<section id="faq">
+    <div class="content">
+        <h2>FAQ</h2>
+        <div class="question">
+            <h3>What is Durhack?</h3>
+            <p>Durhack is a 24-hour MLH hackathon with a twist: focused on satellite data, our challenges are themed and aimed at improving our city.</p>
+        </div>
+    </div>
+</section>
+
+
+
+</body>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyD70GNb2FLOz3cVO-LpF0Jjk8STZgGZKX0"></script>
+
+
+<script type="text/javascript">
+
+    //Menu scrolly uppy downy
+    var expanded = false;
+    var menuitems = document.getElementsByClassName("menu-item");
+    var menucontrol = document.getElementsByClassName("menu-control")[0];
+    var i = 0;
+
+    function toggleMenu() {
+        if (expanded) {
+            for (i = 0; i < menuitems.length; i++) {
+                var item = menuitems[i];
+                item.style.height = "0px";
+                item.style.opacity = "0";
+            }
+            menucontrol.style.transform = "rotate(0deg)";
+            menucontrol.style.textAlign = "left";
+            menucontrol.style.marginBottom = "0px";
+            expanded = false;
+        } else {
+            for (i = 0; i < menuitems.length; i++) {
+                var item = menuitems[i];
+                item.style.height = "55px";
+                item.style.opacity = "1";
+            }
+            menucontrol.style.transform = "rotate(180deg)";
+            menucontrol.style.textAlign = "right";
+            menucontrol.style.marginBottom = "20px";
+            expanded = true;
+        }
+    }
+    </html>
+    <!-- 63 6f 70 79 77 72 69 74 65 64 20 62 79 20 79 6f 75 72 20 6d 75 6d -->
