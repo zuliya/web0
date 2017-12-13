@@ -20,11 +20,12 @@ p {font-size: 16px;}
     color: #ffffff;
 }
 .bg-2 {
-    /*background-image: url('../images/bg2.jpg');*/
+    background-image: url('../images/1.jpg');
     background-color: black; /* Dark Blue */
     color: #ffffff;
 }
 .bg-3 {
+    background-image: url('../images/1.jpg');
     background-color: #ffffff; /* White */
     color: #555555;
 }
