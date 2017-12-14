@@ -2,24 +2,41 @@ var express = require("express")
 var router = express.Router()
 var dbConnection = require('../helpers/dbConnection')
 
+
+// get request only parse as a query string
+
 router.get('/search', function(req, resp){
-  const {search, date} = req.query
-  let query = 'SELECT * FROM event where'
+
+  // underfined showing
+  console.log(req.query)
+  // let search = req.params.title;
+  // let date = req.body.date;
+
+  // was working before
+  const {search, date} = req.query;
+  console.log(search);
+
+  let query = 'SELECT * FROM event WHERE '
   if (search) query += `title LIKE '%${search}%'`
-  if (date) query += `title LIKE '%${search}%'`
+  if (date) query += `title LIKE '%${date}%'`
   if (search && date) query += ` AND `
+
   dbConnection.query(query, function (err, result) {
     if (err) {
       console.log(err)
       resp.send("404 - page not found")
+      return
     }
     resp.send(result)
   })
 })
 
+
+
 router.get('/get/:event_id', function(req, resp){
+
   const id = req.params.event_id;
-  dbConnection.query('SELECT * FROM event where event_id = ?', id, function(err, res, fields) {
+  dbConnection.query('SELECT * FROM event WHERE event_id = ?', id, function(err, res, fields) {
     if(err) throw err
     const event = res[0]
     if (!event) {
@@ -41,5 +58,14 @@ router.post('/add', function(req, resp){
     resp.send(params)
   })
 })
+
+
+// DOES NOT DO ANYTHINGGGG
+
+
+// router.post('/test', function (req,resp)){
+//   const { test_id } = req.body
+//   console.log(test_id);
+// })
 
 module.exports = router

@@ -6,11 +6,11 @@ var events = require('./routes/events')
 var venues = require('./routes/venues')
 var login = require('./routes/login')
 var dbConnection = require('./helpers/dbConnection')
+var bodyParser = require('body-parser');
 // Middlewear
 
 
 // Allow for get and post variables to be read
-var bodyParser = require('body-parser');
 // post requests hiddent
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 //url getrequest in the urlencoded
@@ -22,6 +22,7 @@ app.use(checkToken)
 app.use('/events', events)
 app.use('/venues', venues)
 app.use('/login', login)
+app.use('/static', express.static('./static'))
 
 function checkToken(req, resp, next) {
   // if just need to find event no need to be admin
@@ -31,7 +32,10 @@ function checkToken(req, resp, next) {
   }
 
   // TODO add later auth_token === 'concertina' && req.connection.remoteAddress.startsWith('129.234.')
+
   const { auth_token } = req.body
+
+  console.log(auth_token);
   if (auth_token === 'concertina' ) {
     next()
     return
@@ -53,7 +57,7 @@ function checkToken(req, resp, next) {
       return
     })
   } else {
-    resp.send('Not authenticated!')  
+    resp.send('Not authenticated!')
   }
 }
 
