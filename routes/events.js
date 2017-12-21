@@ -6,13 +6,11 @@ var dbConnection = require('../helpers/dbConnection')
 // get request only parse as a query string
 
 router.get('/search', function(req, resp){
-
-  console.log(req.query)
   const {search, date} = req.query;
 
   let query = 'SELECT * FROM event WHERE'
-  if (search) query += `title LIKE '%${search}%'`
-  if (date) query += `title LIKE '%${date}%'`
+  if (search) query += ` title LIKE '%${search}%'`
+  if (date) query += ` title LIKE '%${date}%'`
   if (search && date) query += ` AND `
   if (!search && !date) query  = "SELECT * FROM event"
 
@@ -23,7 +21,7 @@ router.get('/search', function(req, resp){
       resp.send("No such event")
       return
     }
-    resp.send(result)
+    resp.json(result)
   })
 })
 
