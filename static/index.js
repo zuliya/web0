@@ -20,6 +20,7 @@ $(document).ready(() => {
                   </div>")
       }
     })
+  }
 
     // // $.getJSON("venues",function(data){
     // //   console.log(data);
