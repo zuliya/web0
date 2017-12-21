@@ -7,24 +7,20 @@ var dbConnection = require('../helpers/dbConnection')
 
 router.get('/search', function(req, resp){
 
-  // underfined showing
   console.log(req.query)
-  // let search = req.params.title;
-  // let date = req.body.date;
-
-  // was working before
   const {search, date} = req.query;
-  console.log(search);
 
-  let query = 'SELECT * FROM event WHERE '
+  let query = 'SELECT * FROM event WHERE'
   if (search) query += `title LIKE '%${search}%'`
   if (date) query += `title LIKE '%${date}%'`
   if (search && date) query += ` AND `
+  if (!search && !date) query  = "SELECT * FROM event"
+
 
   dbConnection.query(query, function (err, result) {
     if (err) {
       console.log(err)
-      resp.send("404 - page not found")
+      resp.send("No such event")
       return
     }
     resp.send(result)

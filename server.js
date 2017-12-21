@@ -18,11 +18,14 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 
+
 app.use(checkToken)
 app.use('/events', events)
 app.use('/venues', venues)
 app.use('/login', login)
 app.use('/static', express.static('./static'))
+
+
 
 function checkToken(req, resp, next) {
   // if just need to find event no need to be admin
@@ -30,12 +33,10 @@ function checkToken(req, resp, next) {
     next()
     return
   }
-
   // TODO add later auth_token === 'concertina' && req.connection.remoteAddress.startsWith('129.234.')
-
+console.log(req);
   const { auth_token } = req.body
 
-  console.log(auth_token);
   if (auth_token === 'concertina' ) {
     next()
     return
