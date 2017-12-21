@@ -13,29 +13,6 @@
 
     <script src="/static/index.js"></script>
     <link rel="stylesheet" href="css/style.css">
-
-    <script>
-      $(document).ready(function(){
-
-        $('#searchEvents').click(() => {
-          const search = $('#name').val()
-          const date = $('#date').val()
-          var params = {search, date}
-          $.get('/events/search', parameters, function(data){
-            $('#searchEvents').html("");
-            var events = JSON.parse(data).events;
-            for(i = 0; i < events.length; i++){
-              $('#col-sm-4').append("<div>\
-                              <strong>"+  search + "</strong></br>\
-                      </div>")}
-            })
-          })
-      })
-    
-
-    </script>
-
-
 </head>
 
 
