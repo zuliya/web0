@@ -62,17 +62,19 @@ function checkToken(req, resp, next) {
   if(!username || !password) {
       resp.send('NOT authenticated')
   }
-  console.log(3);
 
   if (username, password) {
     dbConnection.query(`SELECT * FROM user WHERE username LIKE '${username}' and password LIKE '${password}'`, function(err, res) {
       if (err) {
         resp.send("Not authenticated!")
+        // # HERE IS AN ERROR #
+        return
       }
-      console.log(4);
+
       const user = res[0]
       if (!user) {
         resp.send("No user with this login/password")
+        // # HERE IS AN ERROR #
         return
       }
   })
