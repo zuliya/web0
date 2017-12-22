@@ -30,10 +30,17 @@ p {font-size: 16px;}
     color: #555555;
 }
 .bg-4 {
+    background-image: url('../images/bg5.gif');
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+}
+
+.bg-5 {
     background-color: #2f2f2f; /* Black Gray */
     color: #fff;
 }
 .container-fluid {
+    background-color: black;
     padding-top: 70px;
     padding-bottom: 70px;
 }
@@ -64,6 +71,7 @@ p {font-size: 16px;}
 /*Sign into the Admin page*/
 
 .wrapper {
+
     margin-top: 80px;
     margin-bottom: 20px;
 }
