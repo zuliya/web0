@@ -34,31 +34,55 @@ function checkToken(req, resp, next) {
     return
   }
   // TODO add later auth_token === 'concertina' && req.connection.remoteAddress.startsWith('129.234.')
-console.log(req);
-  const { auth_token } = req.body
+  const { auth_token , username, password} = req.body
 
   if (auth_token === 'concertina' ) {
     next()
     return
   }
 
+
   if (auth_token) {
+
     dbConnection.query(`SELECT * FROM user WHERE token = '${auth_token}'`, function(err, result) {
       if (err) {
-        resp.send(error)
+        resp.send('NOT authenticated')
         return
       }
-      const user = result[0]
-      console.log(result[0]);
+
       if(!user){
-          resp.send('Not authenticated!')
+          resp.send('NOT authenticated!')
           return
       }
       next()
       return
     })
-  } else {
+  }
+
+  if(!username || !password) {
+      resp.send('NOT authenticated')
+  }
+  console.log(3);
+
+  if (username, password) {
+    dbConnection.query(`SELECT * FROM user WHERE username LIKE '${username}' and password LIKE '${password}'`, function(err, res) {
+      if (err) {
+        resp.send("Not authenticated!")
+      }
+      console.log(4);
+      const user = res[0]
+      if (!user) {
+        resp.send("No user with this login/password")
+        return
+      }
+  })
+  next()
+  return
+}
+
+   else {
     resp.send('Not authenticated!')
+    return
   }
 }
 

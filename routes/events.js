@@ -46,7 +46,7 @@ router.post('/add', function(req, resp){
   const params = { event_id, title, venue_id, date, url, blurb }
   dbConnection.query('INSERT INTO event SET ?', params, function(err, res) {
     if (err) {
-      resp.send(err)
+      resp.send("Please enter all data")
       return
     }
     resp.send(params)

@@ -6,21 +6,20 @@ var dbConnection = require('../helpers/dbConnection')
 
 
 
-router.post('/log', login)
+router.post('/', login)
 
 function login(req, resp) {
   console.log("Got here")
   const { username, password } = req.body
   dbConnection.query(`SELECT * FROM user WHERE username LIKE '${username}' and password LIKE '${password}'`, function(err, res) {
     if (err) {
-      resp.send(err)
+      resp.send("Not authenticated")
     }
     const user = res[0]
     if (!user) {
       resp.send("No user with this login/password")
       return
     }
-
     // now will generateToken
     // time
     var timeNow = moment()
@@ -32,7 +31,6 @@ function login(req, resp) {
     //ip
     var ipAddress = req.connection.remoteAddress.replace(/^.*:/, '')
     dbConnection.query(`UPDATE user SET token='${token}', token_IpAddress='${ipAddress}', tokenExpires='${timeExpire}' WHERE id=${user.id}`)
-
 
     resp.json(user)
   })

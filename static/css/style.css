@@ -25,7 +25,7 @@ p {font-size: 16px;}
     color: #ffffff;
 }
 .bg-3 {
-    background-image: url('../images/1.jpg');
+    background-image: url('../images/bg0.jpg');
     background-color: #ffffff; /* White */
     color: #555555;
 }
@@ -43,6 +43,7 @@ p {font-size: 16px;}
     background-color: black;
     padding-top: 70px;
     padding-bottom: 70px;
+
 }
 .navbar {
     padding-top: 15px;
@@ -110,3 +111,9 @@ input[type="password"] {
     border-top-right-radius: 0;
 }
 
+
+/*Sign into the EVENT page*/
+.eventRow{
+   style="font-weight:bold;
+   background-color: black;
+}
