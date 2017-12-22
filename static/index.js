@@ -8,10 +8,11 @@ $(document).ready(() => {
         console.log(data)
          var events = data
          for (i=0; i<events.length;i++){
-           // Shows underfined :(
-           // console.log(events.title);
-
-            $('#col-sm-4').append( document.createTextNode( "Hello" ) )
+           var template = ['<div class="col-sm-4">\
+            <p> Event 1 </p>\
+            <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">\
+            </div>')].join("\n")
+            $('#row').append(template)
          }
        }
      })
