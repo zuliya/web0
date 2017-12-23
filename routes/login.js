@@ -4,6 +4,9 @@ var router = express.Router()
 var crypto = require("crypto");
 var dbConnection = require('../helpers/dbConnection');
 
+router.get('/',function (req, res) {
+    console.log("");
+})
 
 router.post('/', login);
 
@@ -37,7 +40,7 @@ function login(req, resp) {
 
     resp.cookie('token',token,{maxAge:7200000});
 
-    resp.redirect("./static/admin.html");
+    resp.redirect("admin.html");
 
   })
 }
