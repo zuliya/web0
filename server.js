@@ -46,17 +46,20 @@ function checkToken(req, resp, next) {
 
 
   if (auth_token) {
+    console.log(auth_token);
 
-    dbConnection.query(`SELECT * FROM user WHERE token = '${auth_token}'`, function(err, result) {
+    dbConnection.all(`SELECT * FROM user WHERE token = '${auth_token}'`, function(err, result) {
+      // Result gives an empty string
+      console.log(result);
 
       if (err) {
         resp.send('NOT authenticated')
         return
       }
 
-      console.log(result[0])
+      console.log(result)
 
-      if(!result[0]){
+      if(!result){
           resp.send('NOT authenticated!')
           return
       }

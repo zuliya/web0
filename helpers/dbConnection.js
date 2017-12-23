@@ -12,14 +12,21 @@
 //   if (error) throw error
 //   console.log('Successfully connected to Database')
 // })
-// module.exports = dbConnection
 //
+// module.exports = dbConnection
+
+
 var sqlite = require('sqlite3').verbose();
 
 // Connecting to db. Up here, so every function can reuse
-var dbConnection = new sqlite.Database("./web.db", sqlite.OPEN_READWRITE, function(err){
+
+//  Cannot read property '0' of undefined
+
+var dbConnection = new sqlite.Database('web.db', 'sqlite.OPEN_READWRITE', function(err)
+{
+  console.log("HERE");
   if(err){
-    console.log(err);
+    console.log("err");
   }
   console.log('Connected to the in-memory SQlite database.');
 });

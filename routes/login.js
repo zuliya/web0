@@ -8,9 +8,11 @@ var dbConnection = require('../helpers/dbConnection')
 
 router.post('/', login)
 function login(req, resp) {
+
   console.log("Got here")
+
   const { username, password } = req.body
-  dbConnection.query(`SELECT * FROM user WHERE username LIKE '${username}' and password LIKE '${password}'`, function(err, res) {
+  dbConnection.all(`SELECT * FROM user WHERE username LIKE '${username}' and password LIKE '${password}'`, function(err, res) {
     if (err) {
       resp.send("Not authenticated")
     }
@@ -29,7 +31,7 @@ function login(req, resp) {
     var token = crypto.randomBytes(20).toString('hex');
     //ip
     var ipAddress = req.connection.remoteAddress.replace(/^.*:/, '')
-    dbConnection.query(`UPDATE user SET token='${token}', token_IpAddress='${ipAddress}', tokenExpires='${timeExpire}' WHERE id=${user.id}`)
+    dbConnection.all(`UPDATE user SET token='${token}', token_IpAddress='${ipAddress}', tokenExpires='${timeExpire}' WHERE id=${user.id}`)
 
     resp.json(user)
   })
