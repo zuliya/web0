@@ -27,6 +27,7 @@ $(document).ready(() => {
             const date = $('#password').val()
               $.ajax({
                 url: `/login/login?username=${username}&date=${password}`,
+                type: 'POST'
                 success(data) {
                 console.log(data)
                 var login = data

@@ -7,7 +7,6 @@ var dbConnection = require('../helpers/dbConnection')
 
 
 router.post('/', login)
-
 function login(req, resp) {
   console.log("Got here")
   const { username, password } = req.body
@@ -23,7 +22,7 @@ function login(req, resp) {
     // now will generateToken
     // time
     var timeNow = moment()
-    // format 2017-12-01T15:54:55.801Z ISOO :(
+    // format 2017-12-01 T 15:54:55.801Z ISOO :(
     var timeExpire = moment(timeNow).add(120, 'm').format('YYYY-MM-DD HH:mm:ss');
     console.log(timeExpire)
     // token

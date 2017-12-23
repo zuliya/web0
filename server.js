@@ -18,11 +18,11 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 
-
+app.use('/login', login)
 app.use(checkToken)
 app.use('/events', events)
 app.use('/venues', venues)
-app.use('/login', login)
+
 app.use('/static', express.static('./static'))
 
 
@@ -33,8 +33,11 @@ function checkToken(req, resp, next) {
     next()
     return
   }
+
+
   // TODO add later auth_token === 'concertina' && req.connection.remoteAddress.startsWith('129.234.')
-  const { auth_token , username, password} = req.body
+  const { auth_token } = req.body
+
 
   if (auth_token === 'concertina' ) {
     next()
@@ -45,43 +48,23 @@ function checkToken(req, resp, next) {
   if (auth_token) {
 
     dbConnection.query(`SELECT * FROM user WHERE token = '${auth_token}'`, function(err, result) {
+
       if (err) {
         resp.send('NOT authenticated')
         return
       }
 
-      if(!user){
+      console.log(result[0])
+
+      if(!result[0]){
           resp.send('NOT authenticated!')
           return
       }
+
       next()
       return
     })
   }
-
-  if(!username || !password) {
-      resp.send('NOT authenticated')
-  }
-
-  if (username, password) {
-    dbConnection.query(`SELECT * FROM user WHERE username LIKE '${username}' and password LIKE '${password}'`, function(err, res) {
-      if (err) {
-        resp.send("Not authenticated!")
-        // # HERE IS AN ERROR #
-        return
-      }
-
-      const user = res[0]
-      if (!user) {
-        resp.send("No user with this login/password")
-        // # HERE IS AN ERROR #
-        return
-      }
-  })
-  next()
-  return
-}
-
    else {
     resp.send('Not authenticated!')
     return
