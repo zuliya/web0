@@ -22,7 +22,7 @@ var sqlite = require('sqlite3').verbose();
 
 //  Cannot read property '0' of undefined
 
-var dbConnection = new sqlite.Database('web.db', 'sqlite.OPEN_READWRITE', function(err)
+var dbConnection = new sqlite.Database('./web.db', 'sqlite.OPEN_READWRITE', function(err)
 {
   console.log("HERE");
   if(err){

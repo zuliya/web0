@@ -7,6 +7,8 @@ var venues = require('./routes/venues')
 var login = require('./routes/login')
 var dbConnection = require('./helpers/dbConnection')
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 // Middlewear
 
 

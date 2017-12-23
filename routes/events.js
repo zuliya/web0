@@ -15,14 +15,15 @@ router.get('/search', function(req, resp){
   if (!search && !date) query  = "SELECT * FROM event"
 
 
-  dbConnection.query(query, function (err, result) {
+  dbConnection.all(query, function (err, result) {
     if (err) {
       console.log(err)
       resp.send("No such event")
-      return
+
     }
     resp.json(result)
   })
+
 })
 
 

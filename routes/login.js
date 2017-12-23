@@ -2,17 +2,19 @@ var express = require('express')
 var moment = require('moment')
 var router = express.Router()
 var crypto = require("crypto");
-var dbConnection = require('../helpers/dbConnection')
+var dbConnection = require('../helpers/dbConnection');
 
 
+router.post('/', login);
 
-router.post('/', login)
 function login(req, resp) {
 
-  console.log("Got here")
+  console.log("Got here");
 
-  const { username, password } = req.body
-  dbConnection.all(`SELECT * FROM user WHERE username LIKE '${username}' and password LIKE '${password}'`, function(err, res) {
+  var sql = "SELECT * FROM user WHERE username = ? and password = ?";
+  var inserts = [req.body.Username,req.body.Password]
+
+  dbConnection.all(sql,inserts, function(err, res) {
     if (err) {
       resp.send("Not authenticated")
     }
@@ -33,7 +35,10 @@ function login(req, resp) {
     var ipAddress = req.connection.remoteAddress.replace(/^.*:/, '')
     dbConnection.all(`UPDATE user SET token='${token}', token_IpAddress='${ipAddress}', tokenExpires='${timeExpire}' WHERE id=${user.id}`)
 
-    resp.json(user)
+    resp.cookie('token',token,{maxAge:7200000});
+
+    resp.redirect("./static/admin.html");
+
   })
 }
 
