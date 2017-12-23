@@ -13,4 +13,11 @@ dbConnection.connect(function(error) {
   console.log('Successfully connected to Database')
 })
 
+// var db = new sqlite.Database("database.db", sqlite.OPEN_READWRITE, function(err){
+//   if(err){
+//     console.log(err);
+//   }
+//   console.log("connected");
+// });
+
 module.exports = dbConnection
