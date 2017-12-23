@@ -6,6 +6,20 @@ body {
 p {font-size: 16px;}
 .margin {margin-bottom: 45px;}
 
+.adminBG0 {
+
+  background-image: url('../images/1.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+
+
+  /*background-color: #1abc9c; !* Green *!*/
+  color: #ffffff;
+
+
+}
 
 .bg-1 {
 

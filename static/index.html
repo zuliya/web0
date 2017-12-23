@@ -13,13 +13,34 @@
 
     <script src="/static/index.js"></script>
     <link rel="stylesheet" href="css/style.css">
+
+
+    <script>
+        $('#user').on('click', function(){
+          $(currentPage).addClass("hidden");
+          $('#searchEvents').removeClass("hidden");
+          currentPage = "#searchEvents";
+          $('.navbar-collapse').collapse('hide');
+          return false;
+        });
+
+        $('#loginSection').on('click', function(){
+          $(currentPage).addClass("hidden");
+          $('#loginWrapper').removeClass("hidden");
+          currentPage = "#loginWrapper";
+          $('.navbar-collapse').collapse('hide');
+          return false;
+        });
+    </script>
+
+
 </head>
 
 
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-default">
+<nav  class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -32,9 +53,9 @@
 
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">User</a></li>
+                <li><a href="#" id="user">User</a></li>
                 <!--<li><a href="#">Search by Date</a></li>-->
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                <li><a href="#"><span id = "loginSection" class="glyphicon glyphicon-log-in"></span> Login</a>
 
             </ul>
         </div>
@@ -50,7 +71,7 @@
 </div>
 
 <!-- Second Container -->
-<div class="container-fluid bg-2 text-center">
+<div id="searchEvents" class="container-fluid  bg-2 text-center">
 
     <h3 class="margin">Search for an Event?</h3>
     <p>
@@ -81,14 +102,14 @@
     </div>
 </div>
 
-<div class="container-fluid bg-4 text-center">
+<div id="loginWrapper" class="container-fluid bg-4 text-center">
     <div class="wrapper">
         <form action="" method="post" name="Login_Form" class="form-signin">
-            <h3 class="form-signin-heading">Please Sign In</h3>
-            <hr class="colorgraph"><br>
-
+            <h3 class="form-signin-heading" id ="signInTxt" >Please Sign In</h3>
+            <div id = "success" >  <h2 > </div>
             <input type="text" id = "username" class="form-control" name="Username" placeholder="Username" required="" autofocus="" />
             <input type="password" id = "password" class="form-control"  name="Password" placeholder="Password" required=""/>
+
 
             <button class="btn btn-lg btn-primary btn-block" id ="btnLogin"  name="Submit" value="Login" type="Submit">Login</button>
         </form>
