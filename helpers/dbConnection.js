@@ -16,13 +16,13 @@
 // module.exports = dbConnection
 
 
-var sqlite = require('sqlite3').verbose();
+var sqlite3 = require('sqlite3').verbose();
 
 // Connecting to db. Up here, so every function can reuse
 
 //  Cannot read property '0' of undefined
 
-var dbConnection = new sqlite.Database('web.db', 'sqlite.OPEN_READWRITE', function(err)
+var dbConnection = new sqlite3.Database('web.db', 'sqlite3.OPEN_READWRITE', function(err)
 {
   console.log("HERE");
   if(err){
