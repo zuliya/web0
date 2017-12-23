@@ -12,6 +12,9 @@ app.use(cookieParser());
 // Middlewear
 
 
+
+
+
 // Allow for get and post variables to be read
 // post requests hiddent
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -20,14 +23,11 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 
-app.use('/login', login)
+app.use('/events2017/login', login)
 app.use(checkToken)
-app.use('/events', events)
-app.use('/venues', venues)
-
-app.use('/static', express.static('./static'))
-
-
+app.use('/events2017/events', events)
+app.use('/events2017/venues', venues)
+app.use('/events2017', express.static('./static'))
 
 function checkToken(req, resp, next) {
   // if just need to find event no need to be admin
