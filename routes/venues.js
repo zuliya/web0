@@ -8,7 +8,7 @@ router.get("/", function(req, resp) {
       resp.setHeader("content-type", "application/json");
   // pass the query to an established connection
   const query = 'SELECT * FROM venue'
-  dbConnection.query(query, function(error, result) {
+  dbConnection.all(query, function(error, result) {
     if (error) {
       console.log(error)
     }
@@ -26,7 +26,7 @@ router.post("/add", function(req, resp) {
   const { name, postcode, town, url, icon } = req.body
   const params = {name, postcode, town, url, icon }
 
-  dbConnection.query('INSERT INTO venue SET ?', params, function(err, res) {
+  dbConnection.all('INSERT INTO venue SET ?', params, function(err, res) {
     console.log(params)
     if (err) {
       resp.send(err)
