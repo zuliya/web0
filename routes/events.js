@@ -43,14 +43,22 @@ router.get('/get/:event_id', function(req, resp){
 })
 
 router.post('/add', function(req, resp){
-  const { event_id, title, venue_id, date, url, blurb } = req.body
-  const params = { event_id, title, venue_id, date, url, blurb }
-  dbConnection.all('INSERT INTO event SET ?', params, function(err, res) {
+
+  // const  { event_id, venue_id,title, date, url, blurb } = req.body
+    //const params = { event_id, venue_id,title, date, url, blurb }
+
+  var inserts = [req.body.event_id, req.body.venue_id, req.body.title, req.body.date, req.body.url, req.body.blurb]
+  var sql = "INSERT INTO event (event_id,venue_id,title,date,url,blurb) VALUES (?,?,?,?,?,?)"
+
+console.log(inserts)
+  dbConnection.all(sql , inserts, function(err, res) {
+
+      console.log(sql,inserts)
     if (err) {
       resp.send("Please enter all data")
-      return
+
     }
-    resp.send(params)
+    resp.send("Success")
   })
 })
 
