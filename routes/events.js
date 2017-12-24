@@ -7,12 +7,15 @@ var dbConnection = require('../helpers/dbConnection')
 
 router.get('/search', function(req, resp){
   const {search, date} = req.query;
+    console.log("Here")
+    console.log(search,date)
+    let query = 'SELECT * FROM event WHERE'
+    if (!search[0] && !date[0]) query  = "SELECT * FROM event"
+    if (search) query += ` title LIKE '%${search}%'`
+    if (date) query += ` title LIKE '%${date}%'`
+    if (search && date) query += ` AND `
+    console.log(query)
 
-  let query = 'SELECT * FROM event WHERE'
-  if (search) query += ` title LIKE '%${search}%'`
-  if (date) query += ` title LIKE '%${date}%'`
-  if (search && date) query += ` AND `
-  if (!search && !date) query  = "SELECT * FROM event"
 
 
   dbConnection.all(query, function (err, result) {
@@ -46,8 +49,8 @@ router.post('/add', function(req, resp){
 
   // const  { event_id, venue_id,title, date, url, blurb } = req.body
     //const params = { event_id, venue_id,title, date, url, blurb }
-
-  var inserts = [req.body.event_id, req.body.venue_id, req.body.title, req.body.date, req.body.url, req.body.blurb]
+    // var auth_token = [req.body.auth_token]
+    var inserts = [req,req.body.event_id, req.body.venue_id, req.body.title, req.body.date, req.body.url, req.body.blurb]
   var sql = "INSERT INTO event (event_id,venue_id,title,date,url,blurb) VALUES (?,?,?,?,?,?)"
 
 console.log(inserts)
@@ -56,7 +59,7 @@ console.log(inserts)
       console.log(sql,inserts)
     if (err) {
       resp.send("Please enter all data")
-
+        return
     }
     resp.send("Success")
   })

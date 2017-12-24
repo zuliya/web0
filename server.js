@@ -38,16 +38,18 @@ function checkToken(req, resp, next) {
 
 
   // TODO add later auth_token === 'concertina' && req.connection.remoteAddress.startsWith('129.234.')
-  const { auth_token } = req.body
-
+  let { auth_token } = req.body
 
   if (auth_token === 'concertina' ) {
     next()
     return
   }
 
-
+    if (!auth_token) {
+        auth_token = req.cookies.auth_token
+    }
   if (auth_token) {
+      console.log("here");
     console.log(auth_token);
 
     dbConnection.all(`SELECT * FROM user WHERE token = '${auth_token}'`, function(err, result) {

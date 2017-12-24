@@ -18,6 +18,8 @@ function login(req, resp) {
   var inserts = [req.body.Username,req.body.Password]
 
   dbConnection.all(sql,inserts, function(err, res) {
+
+
     if (err) {
       resp.send("Not authenticated")
     }
@@ -37,9 +39,8 @@ function login(req, resp) {
     //ip
     var ipAddress = req.connection.remoteAddress.replace(/^.*:/, '')
     dbConnection.all(`UPDATE user SET token='${token}', token_IpAddress='${ipAddress}', tokenExpires='${timeExpire}' WHERE id=${user.id}`)
-
+      
     resp.cookie('token',token,{maxAge:7200000});
-
     resp.redirect("admin.html");
 
   })

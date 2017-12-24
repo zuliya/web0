@@ -7,6 +7,7 @@ router.get("/", function(req, resp) {
   // application/json all response have JSON have to send JSON
       resp.setHeader("content-type", "application/json");
   // pass the query to an established connection
+
   const query = 'SELECT * FROM venue'
   dbConnection.all(query, function(error, result) {
     if (error) {
