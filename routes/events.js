@@ -7,9 +7,9 @@ var dbConnection = require('../helpers/dbConnection')
 
 router.get('/search', function(req, resp){
   const {search, date} = req.query;
-    console.log("Here")
-    console.log(search,date)
+
     let query = 'SELECT * FROM event WHERE'
+
     if (!search[0] && !date[0]) query  = "SELECT * FROM event"
     if (search) query += ` title LIKE '%${search}%'`
     if (date) query += ` title LIKE '%${date}%'`
@@ -19,6 +19,7 @@ router.get('/search', function(req, resp){
 
 
   dbConnection.all(query, function (err, result) {
+    console.log(query)
     if (err) {
       console.log(err)
       resp.send("No such event")
@@ -50,7 +51,7 @@ router.post('/add', function(req, resp){
   // const  { event_id, venue_id,title, date, url, blurb } = req.body
     //const params = { event_id, venue_id,title, date, url, blurb }
     // var auth_token = [req.body.auth_token]
-    var inserts = [req,req.body.event_id, req.body.venue_id, req.body.title, req.body.date, req.body.url, req.body.blurb]
+    var inserts = [req.body.event_id, req.body.venue_id, req.body.title, req.body.date, req.body.url, req.body.blurb]
   var sql = "INSERT INTO event (event_id,venue_id,title,date,url,blurb) VALUES (?,?,?,?,?,?)"
 
 console.log(inserts)
