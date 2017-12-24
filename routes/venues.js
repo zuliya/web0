@@ -23,18 +23,22 @@ router.get("/", function(req, resp) {
 })
 
 router.post("/add", function(req, resp) {
-  const { name, postcode, town, url, icon } = req.body
-  const params = {name, postcode, town, url, icon }
 
-  dbConnection.all('INSERT INTO venue SET ?', params, function(err, res) {
-    console.log(params)
-    if (err) {
-      resp.send(err)
-      console.log(params)
-      return
-    }
-    resp.send(params)
-  })
+    var inserts = [req.body.name, req.body.postcode, req.body.town, req.body.url, req.body.icon]
+    var sql = "INSERT INTO venue (name, postcode, town, url, icon ) VALUES (?,?,?,?,?)"
+
+    console.log(inserts)
+    dbConnection.all(sql , inserts, function(err, res) {
+
+        console.log(sql,inserts)
+        if (err) {
+            resp.send("Please enter all data")
+            return
+
+        }
+        resp.send("Success")
+    })
+
 });
 
 module.exports = router
