@@ -19,15 +19,17 @@ $(document).ready(() => {
                      $('#eventRow').append('<div class="col-sm-4">\
                      <div class="panel panel-default">\
                       <p> <br> <span style="font-weight:bold"> Event ' + counter + '</span></p>\
+                      <p> Event ID: ' + events[i].event_id + '</p>\
                       <p> Title: <br>' + events[i].title + '</p>\
                       <p> Date: <br>' + events[i].date + '</p>\
-                      <p> url: <br> ' + events[i].url + '</p>\
+                      <p> URL: <br> ' + events[i].url + '</p>\
+                      <p> Town: <br> ' + events[i].town + '</p>\
+                      <p> Postcode: <br> ' + events[i].postcode + '</p>\
                       <br> \
                       </div>\
                       </div>')}
               }
           })
-
         //
         // $.ajax({
         //

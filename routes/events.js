@@ -7,30 +7,20 @@ var dbConnection = require('../helpers/dbConnection')
 
 router.get('/search', function(req, resp){
 
-  const {search, date} = req.query;
-    console.log(search,date)
+    // console.log(req)
+    console.log(req.query.search, req.query.date)
+    var sql = "SELECT * FROM event JOIN venue ON event.venue_id = venue.venue_id WHERE (event.title LIKE ? AND event.date LIKE ?)";
+    var inserts = [req.query.search, req.query.date];
+    console.log(inserts)
+    dbConnection.all(sql,inserts, function (err, result) {
+      console.log(sql, inserts)
+        if (err) {
+            resp.send("No such event")
+        };
 
-    
-    let query = 'SELECT * FROM event WHERE '
-
-    if (!search[0] && !date[0]) query  = "SELECT * FROM event"
-    if (search) query += ` title LIKE '%${search}%'`
-    if (date) query += ` title LIKE '%${date}%'`
-
-    if (search && date) query += ` AND `
-    console.log(query)
-    // query += 'INNER JOIN venue ON event.venue_id = venue.id'
-
-
-
-    dbConnection.all(query, function (err, result) {
-    console.log(query)
-    if (err) {
-      resp.send("No such event")
-
-    }
-    resp.json(result)
-  })
+        //Sending JSON.
+        return resp.json(result);
+    });
 
 })
 
@@ -55,7 +45,7 @@ router.post('/add', function(req, resp){
   // const  { event_id, venue_id,title, date, url, blurb } = req.body
     //const params = { event_id, venue_id,title, date, url, blurb }
     // var auth_token = [req.body.auth_token]
-    var inserts = [req.body.event_id, req.body.venue_id, req.body.title, req.body.date, req.body.url, req.body.blurb]
+    var date = req.body.date
 
 
 
@@ -77,6 +67,15 @@ router.post('/add', function(req, resp){
         return
     }
 
+    if (req.body.date.length == 8){
+        var date = date.slice(0, 4) + "-" + date.slice(4);
+        console.log(date)
+        var date = date.slice(0, 7) + "-" + date.slice(7);
+        console.log(date)
+    }
+
+    var inserts = [req.body.event_id, req.body.venue_id, req.body.title, date , req.body.url, req.body.blurb]
+
     var sql = "INSERT INTO event (event_id,venue_id,title,date,url,blurb) VALUES (?,?,?,?,?,?)"
 
 console.log(inserts)
@@ -87,7 +86,7 @@ console.log(inserts)
       resp.send("Please enter all data")
         return
     }
-    resp.send("Success")
+    resp.send("Success Your event have been added to a database")
   })
 })
 

@@ -15,9 +15,9 @@ router.get("/", function(req, resp) {
     }
     let normalized = {}
     for (var i = 0; i < result.length; i++ ) {
-      const { id, name, postcode, town, url, icon } = result[i]
+      const { venue_id, name, postcode, town, url, icon } = result[i]
       // string interpalation ['']
-      normalized[`v_${id}`] = { name, postcode, town, url, icon }
+      normalized[`v_${venue_id}`] = { name, postcode, town, url, icon }
     }
     resp.json({ venues: normalized })
   })
