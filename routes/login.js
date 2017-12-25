@@ -39,7 +39,6 @@ function login(req, resp) {
     //ip
     var ipAddress = req.connection.remoteAddress.replace(/^.*:/, '')
     dbConnection.all(`UPDATE user SET token='${token}', token_IpAddress='${ipAddress}', tokenExpires='${timeExpire}' WHERE id=${user.id}`)
-      
     resp.cookie('token',token,{maxAge:7200000});
     resp.redirect("admin.html");
 

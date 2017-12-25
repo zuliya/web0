@@ -26,6 +26,21 @@ router.get("/", function(req, resp) {
 router.post("/add", function(req, resp) {
 
     var inserts = [req.body.name, req.body.postcode, req.body.town, req.body.url, req.body.icon]
+
+    if (req.body.name == ''){
+        resp.send("Please enter all data")
+        return
+    }
+    if (req.body.postcode == ''){
+        resp.send("Please enter all data")
+        return
+    }
+    if (req.body.town == ''){
+        resp.send("Please enter all data")
+        return
+    }
+
+
     var sql = "INSERT INTO venue (name, postcode, town, url, icon ) VALUES (?,?,?,?,?)"
 
     console.log(inserts)

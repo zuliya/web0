@@ -6,22 +6,26 @@ var dbConnection = require('../helpers/dbConnection')
 // get request only parse as a query string
 
 router.get('/search', function(req, resp){
-  const {search, date} = req.query;
 
-    let query = 'SELECT * FROM event WHERE'
+  const {search, date} = req.query;
+    console.log(search,date)
+
+    
+    let query = 'SELECT * FROM event WHERE '
 
     if (!search[0] && !date[0]) query  = "SELECT * FROM event"
     if (search) query += ` title LIKE '%${search}%'`
     if (date) query += ` title LIKE '%${date}%'`
+
     if (search && date) query += ` AND `
     console.log(query)
+    // query += 'INNER JOIN venue ON event.venue_id = venue.id'
 
 
 
-  dbConnection.all(query, function (err, result) {
+    dbConnection.all(query, function (err, result) {
     console.log(query)
     if (err) {
-      console.log(err)
       resp.send("No such event")
 
     }
@@ -52,7 +56,28 @@ router.post('/add', function(req, resp){
     //const params = { event_id, venue_id,title, date, url, blurb }
     // var auth_token = [req.body.auth_token]
     var inserts = [req.body.event_id, req.body.venue_id, req.body.title, req.body.date, req.body.url, req.body.blurb]
-  var sql = "INSERT INTO event (event_id,venue_id,title,date,url,blurb) VALUES (?,?,?,?,?,?)"
+
+
+
+    if (req.body.event_id == ''){
+        resp.send("Please enter all data")
+        return
+    }
+    if (req.body.title == ''){
+        resp.send("Please enter all data")
+        return
+    }
+    if (req.body.venue_id == ''){
+        resp.send("Please enter all data")
+        return
+    }
+
+    if (req.body.date == ''){
+        resp.send("Please enter all data")
+        return
+    }
+
+    var sql = "INSERT INTO event (event_id,venue_id,title,date,url,blurb) VALUES (?,?,?,?,?,?)"
 
 console.log(inserts)
   dbConnection.all(sql , inserts, function(err, res) {
